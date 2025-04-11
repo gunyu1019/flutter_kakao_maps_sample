@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:kakao_map_sdk_example/components/control_component.dart';
+import 'package:kakao_map_sdk_example/components/control/slider.dart';
 import 'package:kakao_map_sdk_example/components/title_component.dart';
 import 'package:kakao_map_sdk_example/models/menu_info.dart';
 
@@ -15,50 +15,51 @@ class CameraOptionMenu extends StatefulWidget {
 }
 
 class _CameraOptionMenuState extends State<CameraOptionMenu>
- with TitleComponent, ControlComponent {
-  Widget title() =>
-    Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-        child: Row(
-          children: [
-            backButtom(),
-            titleText(CameraOptionMenu.menuInfo.title),
-          ],
-        ));
+    with TitleComponent {
+  Widget title() => Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+      child: Row(
+        children: [
+          backButtom(),
+          titleText(CameraOptionMenu.menuInfo.title),
+        ],
+      ));
 
   Widget _positionInfoText(String title, String data) => Row(
-    spacing: 2,
-    children: [
-      Text(title, style: positionTitleText),
-      Flexible(child: Text(data, style: positionValueText, overflow: TextOverflow.ellipsis,))
-    ],
-  );
+        spacing: 2,
+        children: [
+          Text(title, style: positionTitleText),
+          Flexible(
+              child: Text(
+            data,
+            style: positionValueText,
+            overflow: TextOverflow.ellipsis,
+          ))
+        ],
+      );
 
   Widget positionInfoText() {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      spacing: 1.0,
-      children: [
-        _positionInfoText("경도: ", "1234512345123451234512345"),
-        _positionInfoText("위도: ", "12345"),
-      ]
-    );
+        mainAxisAlignment: MainAxisAlignment.center,
+        spacing: 1.0,
+        children: [
+          _positionInfoText("경도: ", "1234512345123451234512345"),
+          _positionInfoText("위도: ", "12345"),
+        ]);
   }
 
   Widget positionInfoCard(String title, String data) {
     return Card(
-      child: Container(
-        constraints: const BoxConstraints(minHeight: 60, minWidth: 60),
-        child: Column(
+        child: Container(
+      constraints: const BoxConstraints(minHeight: 60, minWidth: 60),
+      child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           spacing: 1,
           children: [
             Text(title, style: positionTitleText),
             Text(data, style: positionValueText, overflow: TextOverflow.fade)
-          ]
-        ),
-      )
-    );
+          ]),
+    ));
   }
 
   Widget cameraInfoText() {
@@ -70,34 +71,79 @@ class _CameraOptionMenuState extends State<CameraOptionMenu>
     ]);
   }
 
-  Widget applyCameraButton(String title, void Function() onPressed) => OutlinedButton(
-    onPressed: onPressed, 
-    child: SizedBox(width: double.infinity, child: Text(title, style: buttonText, textAlign: TextAlign.center,))
-  );
+  Widget applyCameraButton(String title, void Function() onPressed) =>
+      OutlinedButton(
+          onPressed: onPressed,
+          child: SizedBox(
+              width: double.infinity,
+              child: Text(
+                title,
+                style: buttonText,
+                textAlign: TextAlign.center,
+              )));
 
   @override
   Widget build(BuildContext context) => Column(
-      children: [
-        title(),
-        Expanded(child: SingleChildScrollView(
-          child: Column(
-            spacing: 2,
-            children: [
+        children: [
+          title(),
+          Expanded(
+              child: SingleChildScrollView(
+            child: Column(spacing: 2, children: [
               cameraInfoText(),
-              slider("애니메이션", 0, (value) {}),
-              slider("기울기", 0, (value) {}),
-              slider("틸트", 0, (value) {}),
+              
+              ControlSlider(
+                  title: "애니메이션",
+                  titleTextStyle: controllerTitleText,
+                  valueTextStyle: controllerValueText,
+                  onChanged: (value) {},
+                  placeholder: "초",
+                  divisions: 120,
+                  maxValue: 60.0),
+              ControlSlider(
+                  title: "기울기",
+                  titleTextStyle: controllerTitleText,
+                  valueTextStyle: controllerValueText,
+                  onChanged: (value) {},
+                  placeholder: "도",
+                  divisions: 360,
+                  maxValue: 360.0),
+              ControlSlider(
+                  title: "틸트",
+                  titleTextStyle: controllerTitleText,
+                  valueTextStyle: controllerValueText,
+                  onChanged: (value) {},
+                  placeholder: "도",
+                  divisions: 90,
+                  maxValue: 90.0),
               applyCameraButton("적용", () {})
-            ]
-          ),
-        ))
-      ],
-    );
-  
+            ]),
+          ))
+        ],
+      );
+
   final positionTitleText = const TextStyle(
-      fontSize: 14, color: Colors.black, decoration: TextDecoration.none, fontWeight: FontWeight.bold);
+      fontSize: 14,
+      color: Colors.black,
+      decoration: TextDecoration.none,
+      fontWeight: FontWeight.bold);
   final positionValueText = const TextStyle(
-      fontSize: 14, color: Colors.black, decoration: TextDecoration.none, fontWeight: FontWeight.normal);
+      fontSize: 14,
+      color: Colors.black,
+      decoration: TextDecoration.none,
+      fontWeight: FontWeight.normal);
+  final controllerTitleText = const TextStyle(
+      fontSize: 16,
+      color: Colors.black,
+      decoration: TextDecoration.none,
+      fontWeight: FontWeight.bold);
+  final controllerValueText = const TextStyle(
+      fontSize: 16,
+      color: Colors.black,
+      decoration: TextDecoration.none,
+      fontWeight: FontWeight.normal);
   final buttonText = const TextStyle(
-      fontSize: 16, color: Colors.black, decoration: TextDecoration.none, fontWeight: FontWeight.normal);
+      fontSize: 16,
+      color: Colors.black,
+      decoration: TextDecoration.none,
+      fontWeight: FontWeight.normal);
 }

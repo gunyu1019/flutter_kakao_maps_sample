@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:kakao_map_sdk_example/components/control_component.dart';
+import 'package:kakao_map_sdk_example/components/control/checkbox.dart';
+import 'package:kakao_map_sdk_example/components/control/dropdown.dart';
 import 'package:kakao_map_sdk_example/components/title_component.dart';
 import 'package:kakao_map_sdk_example/models/menu_info.dart';
 
@@ -15,7 +16,7 @@ class MapSettingMenu extends StatefulWidget {
 }
 
 class _MapSettingMenuState extends State<MapSettingMenu>
- with TitleComponent, ControlComponent {
+ with TitleComponent {
   Widget title() =>
     Padding(
         padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
@@ -34,15 +35,20 @@ class _MapSettingMenuState extends State<MapSettingMenu>
           child: Column(
             spacing: 2,
             children: [
-              checkbox("나침판 활성화", false, (value) {}),
-              checkbox("축적바 활성화", false, (value) {}),
-              dropbox("지도 유형", ["일반", "스카이뷰"], 0, (value) {}),
-              dropbox("나침판 위치", ["좌측 상단", "좌측 상단", "우측 하단", "우측 상단"], 0, (value) {}),
-              dropbox("축적바 위치", ["좌측 상단", "좌측 상단", "우측 하단", "우측 상단"], 0, (value) {}),
-              dropbox("로고 위치", ["좌측 상단", "좌측 상단", "우측 하단", "우측 상단"], 0, (value) {}),
+              ControlCheckbox(title: "나침판 활성화", titleTextStyle: controllerTitleText, onChanged: (value) {}),
+              ControlCheckbox(title: "축적바 활성화", titleTextStyle: controllerTitleText, onChanged: (value) {}),
+              ControlDropdown(title: "지도 유형", titleTextStyle: controllerTitleText, values: ["일반", "스카이뷰"], onChanged: (value) {}),
+              ControlDropdown(title: "나침판 위치", titleTextStyle: controllerTitleText, values: ["좌측 상단", "좌측 상단", "우측 하단", "우측 상단"], onChanged: (value) {}),
+              ControlDropdown(title: "축적바 위치", titleTextStyle: controllerTitleText, values: ["좌측 상단", "좌측 상단", "우측 하단", "우측 상단"], onChanged: (value) {}),
+              ControlDropdown(title: "로고 위치", titleTextStyle: controllerTitleText, values: ["좌측 상단", "좌측 상단", "우측 하단", "우측 상단"], onChanged: (value) {}),
             ]
           ),
         ))
       ],
   );
+
+  final controllerTitleText = const TextStyle(
+      fontSize: 16, color: Colors.black, decoration: TextDecoration.none, fontWeight: FontWeight.bold);
+  final controllerValueText = const TextStyle(
+      fontSize: 16, color: Colors.black, decoration: TextDecoration.none, fontWeight: FontWeight.normal);
 }
