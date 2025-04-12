@@ -11,12 +11,10 @@ class ControlSegmentedButton<T> extends StatefulWidget {
       required this.values,
       required this.onChanged,
       this.titleTextStyle,
-      this.valueTextStyle,
       this.initialValue});
 
   final String title;
   final TextStyle? titleTextStyle;
-  final TextStyle? valueTextStyle;
 
   final List<T> values;
   final T? initialValue;
@@ -39,23 +37,26 @@ class _ControlSegmentedButtonState<T extends SegmentedButtonItem> extends State<
 
   @override
   Widget build(BuildContext context) =>
-      Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
         Text(widget.title,
               style: widget.titleTextStyle, textAlign: TextAlign.start),
-        SegmentedButton<T>(
-          segments: widget.values.map((element) => ButtonSegment<T>(
-              value: element,
-              label: Text(element.text),
-            )).toList(),
-          selected: <T>{selectedButton},
-          onSelectionChanged: (Set<T> newSelection) {
-            setState(() {
-              // By default there is only a single segment that can be
-              // selected at one time, so its value is always the first
-              // item in the selected set.
-              selectedButton = newSelection.first;
-            });
-          },
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8),
+          child: SegmentedButton<T>(
+            segments: widget.values.map((element) => ButtonSegment<T>(
+                value: element,
+                label: Text(element.text, overflow: TextOverflow.ellipsis),
+              )).toList(),
+            selected: <T>{selectedButton},
+            onSelectionChanged: (Set<T> newSelection) {
+              setState(() {
+                // By default there is only a single segment that can be
+                // selected at one time, so its value is always the first
+                // item in the selected set.
+                selectedButton = newSelection.first;
+              });
+            },
+          )
         )
       ]);
 }
