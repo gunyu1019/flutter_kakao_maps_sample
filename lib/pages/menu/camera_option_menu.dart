@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:kakao_map_sdk/kakao_map_sdk.dart';
+import 'package:kakao_map_sdk_example/components/control/segmented_button.dart';
 import 'package:kakao_map_sdk_example/components/control/slider.dart';
 import 'package:kakao_map_sdk_example/components/title_component.dart';
+import 'package:kakao_map_sdk_example/models/location_info.dart';
 import 'package:kakao_map_sdk_example/models/menu_info.dart';
 
 class CameraOptionMenu extends StatefulWidget {
@@ -90,7 +93,19 @@ class _CameraOptionMenuState extends State<CameraOptionMenu>
               child: SingleChildScrollView(
             child: Column(spacing: 2, children: [
               cameraInfoText(),
-              
+              ControlSegmentedButton(
+                  title: "위치",
+                  titleTextStyle: controllerTitleText,
+                  values: [
+                    LocationInfo("내 위치"),
+                    LocationInfo("카카오 판교캠퍼스",
+                        const LatLng(37.39479412020964, 127.11116968185037)),
+                    LocationInfo("서울시청",
+                        const LatLng(37.56664910407437, 126.97822134589721)),
+                    LocationInfo("강원대학교",
+                        const LatLng(37.86921611369963, 127.74240558283384)),
+                  ],
+                  onChanged: (index) {}),
               ControlSlider(
                   title: "애니메이션",
                   titleTextStyle: controllerTitleText,
