@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:kakao_map_sdk_example/components/title_component.dart';
-import 'package:kakao_map_sdk_example/enums/routes.dart';
+import 'package:kakao_map_sdk_example/screens/components/title_component.dart';
+import 'package:kakao_map_sdk_example/routes/menu_routes.dart';
 import 'package:kakao_map_sdk_example/models/menu_info.dart';
-import 'package:kakao_map_sdk_example/pages/routers.dart';
+import 'package:kakao_map_sdk_example/routes/routers.dart';
 
 class HomeMenu extends StatefulWidget {
   const HomeMenu({super.key});
@@ -17,7 +17,7 @@ class _HomeMenuState extends State<HomeMenu> with TitleComponent {
   @override
   Widget build(BuildContext context) {
     var children = <Widget>[];
-    children.addAll(Routes.values.map((element) {
+    children.addAll(MenuRoutes.values.map((element) {
       if (!element.menuInfo.visible || element.menuInfo.icon == null) {
         return const SizedBox.shrink();
       }

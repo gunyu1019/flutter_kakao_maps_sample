@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:kakao_map_sdk_example/components/control/checkbox.dart';
-import 'package:kakao_map_sdk_example/components/control/dropdown.dart';
-import 'package:kakao_map_sdk_example/components/title_component.dart';
+import 'package:kakao_map_sdk_example/screens/components/control/checkbox.dart';
+import 'package:kakao_map_sdk_example/screens/components/control/dropdown.dart';
+import 'package:kakao_map_sdk_example/screens/components/title_component.dart';
 import 'package:kakao_map_sdk_example/models/menu_info.dart';
 
 class MapSettingMenu extends StatefulWidget {

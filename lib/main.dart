@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kakao_map_sdk/kakao_map_sdk.dart';
-import 'package:kakao_map_sdk_example/pages/routers.dart';
+import 'package:kakao_map_sdk_example/routes/routers.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

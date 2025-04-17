@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:kakao_map_sdk/kakao_map_sdk.dart';
-import 'package:kakao_map_sdk_example/components/control/segmented_button.dart';
-import 'package:kakao_map_sdk_example/components/control/slider.dart';
-import 'package:kakao_map_sdk_example/components/title_component.dart';
+import 'package:kakao_map_sdk_example/screens/components/control/segmented_button.dart';
+import 'package:kakao_map_sdk_example/screens/components/control/slider.dart';
+import 'package:kakao_map_sdk_example/screens/components/title_component.dart';
 import 'package:kakao_map_sdk_example/models/location_info.dart';
 import 'package:kakao_map_sdk_example/models/menu_info.dart';
 

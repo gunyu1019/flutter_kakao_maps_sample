@@ -3,11 +3,13 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:kakao_map_sdk_example/pages/routers.dart';
+import 'package:kakao_map_sdk_example/constants/colors.dart';
+import 'package:kakao_map_sdk_example/constants/text_styles.dart';
+import 'package:kakao_map_sdk_example/routes/routers.dart';
 
 mixin TitleComponent {
   Widget titleText([String? text]) =>
-      Text(text ?? "Kakao Map SDK", style: titleTextStyle, overflow: TextOverflow.ellipsis,);
+      Text(text ?? "Kakao Map SDK", style: TextStyles.titleTextStyle, overflow: TextOverflow.ellipsis,);
 
   Widget baseSubCard(String text, IconData? icon,
       {Color? color, Color? backgroundColor}) {
@@ -39,24 +41,18 @@ mixin TitleComponent {
     }
     return switch (Platform.operatingSystem) {
       "ios" => baseSubCard(Platform.operatingSystem, FontAwesomeIcons.apple,
-          backgroundColor: iOSColor),
+          backgroundColor: AppColors.iOSColor),
       "android" => baseSubCard(
           Platform.operatingSystem, FontAwesomeIcons.android,
-          backgroundColor: androidColor),
+          backgroundColor: AppColors.androidColor),
       String() => baseSubCard("unknown", null),
     };
   }
 
   Widget flutterCard() => baseSubCard("Flutter", FontAwesomeIcons.flutter,
-      backgroundColor: flutterColor);
+      backgroundColor: AppColors.flutterColor);
 
   Widget backButtom([void Function()? onPressed]) => IconButton(
       onPressed: onPressed ?? () => router.pop(), icon: const FaIcon(FontAwesomeIcons.chevronLeft), padding: const EdgeInsets.all(0));
 
-  final titleTextStyle = const TextStyle(
-      fontSize: 24, color: Colors.black, decoration: TextDecoration.none, fontWeight: FontWeight.bold);
-
-  final Color flutterColor = const Color.fromARGB(255, 19, 137, 253);
-  final Color androidColor = const Color.fromARGB(255, 50, 222, 132);
-  final Color iOSColor = const Color.fromARGB(255, 0, 0, 0);
 }

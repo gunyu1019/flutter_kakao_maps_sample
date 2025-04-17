@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:kakao_map_sdk/kakao_map_sdk.dart';
-import 'package:kakao_map_sdk_example/components/control/segmented_button.dart';
-import 'package:kakao_map_sdk_example/components/control/slider.dart';
-import 'package:kakao_map_sdk_example/components/title_component.dart';
-import 'package:kakao_map_sdk_example/models/location_info.dart';
+import 'package:kakao_map_sdk_example/screens/components/title_component.dart';
 import 'package:kakao_map_sdk_example/models/menu_info.dart';
 
 class NavigationMenu extends StatefulWidget {
@@ -37,8 +33,6 @@ class _NavigationMenuState extends State<NavigationMenu>
 
   Widget positionCard(String title, String value) => Card(
     child: Container(
-      width: double.infinity,
-      height: double.infinity,
       padding: const EdgeInsets.all(4),
       child: InkWell(
         onTap: () {},
@@ -68,13 +62,6 @@ class _NavigationMenuState extends State<NavigationMenu>
   Widget build(BuildContext context) => Column(
         children: [
           title(),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              positionCard("경도", "0"),
-              positionCard("위도", "0"),
-            ],
-          ),
           applyNavigationButton("네비게이션 경로", () {})
         ],
       );
