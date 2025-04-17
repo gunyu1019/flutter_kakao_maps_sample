@@ -13,17 +13,7 @@ class NavigationMenu extends StatefulWidget {
       "두 찍은 지점의 경로를 카카오네비 API로 탐색합니다..", FontAwesomeIcons.locationArrow, true);
 }
 
-class _NavigationMenuState extends State<NavigationMenu>
-    with TitleComponent {
-  Widget title() => Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-      child: Row(
-        children: [
-          backButtom(),
-          titleText(NavigationMenu.menuInfo.title),
-        ],
-      ));
-
+class _NavigationMenuState extends State<NavigationMenu> {
   Widget _positionCardText(String title, String value) => Text.rich(
               TextSpan(children: [
                 TextSpan(text: title, style: positionTitleText),
@@ -61,7 +51,10 @@ class _NavigationMenuState extends State<NavigationMenu>
   @override
   Widget build(BuildContext context) => Column(
         children: [
-          title(),
+          TitleComponent(
+            title: NavigationMenu.menuInfo.title,
+            backEnabled: true,
+          ),
           applyNavigationButton("네비게이션 경로", () {})
         ],
       );

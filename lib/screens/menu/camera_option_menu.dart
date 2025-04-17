@@ -17,17 +17,7 @@ class CameraOptionMenu extends StatefulWidget {
       "지도를 비추고 있는 카메라를 조작합니다.", FontAwesomeIcons.camera, true);
 }
 
-class _CameraOptionMenuState extends State<CameraOptionMenu>
-    with TitleComponent {
-  Widget title() => Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-      child: Row(
-        children: [
-          backButtom(),
-          titleText(CameraOptionMenu.menuInfo.title),
-        ],
-      ));
-
+class _CameraOptionMenuState extends State<CameraOptionMenu> {
   Widget _positionInfoText(String title, String data) => Row(
         spacing: 2,
         children: [
@@ -88,7 +78,10 @@ class _CameraOptionMenuState extends State<CameraOptionMenu>
   @override
   Widget build(BuildContext context) => Column(
         children: [
-          title(),
+          TitleComponent(
+            title: CameraOptionMenu.menuInfo.title,
+            backEnabled: false,
+          ),
           Expanded(
               child: SingleChildScrollView(
             child: Column(spacing: 2, children: [

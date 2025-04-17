@@ -13,7 +13,7 @@ class HomeMenu extends StatefulWidget {
   static const MenuInfo menuInfo = MenuInfo("/", "홈", "");
 }
 
-class _HomeMenuState extends State<HomeMenu> with TitleComponent {
+class _HomeMenuState extends State<HomeMenu> {
   @override
   Widget build(BuildContext context) {
     var children = <Widget>[];
@@ -29,27 +29,14 @@ class _HomeMenuState extends State<HomeMenu> with TitleComponent {
     return Column(
       spacing: 1,
       children: [
-        title(),
+          const TitleComponent(
+            backEnabled: false,
+          ),
         Expanded(child: SingleChildScrollView(
           child: Column(children: children),
         ))
       ],
     );
-  }
-
-  Widget title() {
-    return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Flexible(child: titleText()),
-            Row(spacing: 8, children: [
-              flutterCard(),
-              platformCard(),
-            ])
-          ],
-        ));
   }
 
   Widget cardButtom(Widget icon, String title, String description,
