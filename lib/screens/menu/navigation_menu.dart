@@ -14,28 +14,29 @@ class NavigationMenu extends StatefulWidget {
 }
 
 class _NavigationMenuState extends State<NavigationMenu> {
-  Widget _positionCardText(String title, String value) => Text.rich(
-              TextSpan(children: [
-                TextSpan(text: title, style: positionTitleText),
-                TextSpan(text: value, style: positionValueText)
-              ])
-            );
+  Widget _positionCardText(String title, String value) =>
+      Text.rich(TextSpan(children: [
+        TextSpan(text: title, style: positionTitleText),
+        TextSpan(text: value, style: positionValueText)
+      ]));
 
-  Widget positionCard(String title, String value) => Card(
-    child: Container(
-      padding: const EdgeInsets.all(4),
-      child: InkWell(
+  Widget positionCard(String title, String value) => Expanded(
+          child: InkWell(
         onTap: () {},
-        child: Column(
-          children: [
-            Text(title, style: positionTitleText),
-            _positionCardText("경도", "0.000"),
-            _positionCardText("위도", "0.000")
-          ],
+        child: Card(
+          child: Container(
+            alignment: Alignment.center,
+            padding: const EdgeInsets.all(4),
+            child: Column(
+              children: [
+                Text(title, style: positionTitleText),
+                _positionCardText("경도", "0.000"),
+                _positionCardText("위도", "0.000")
+              ],
+            ),
+          ),
         ),
-      ),
-    ),
-  );
+      ));
 
   Widget applyNavigationButton(String title, void Function() onPressed) =>
       OutlinedButton(
@@ -55,6 +56,10 @@ class _NavigationMenuState extends State<NavigationMenu> {
             title: NavigationMenu.menuInfo.title,
             backEnabled: true,
           ),
+          Expanded(
+              child: Row(
+            children: [positionCard("출발지", ""), positionCard("목적지", "")],
+          )),
           applyNavigationButton("네비게이션 경로", () {})
         ],
       );
